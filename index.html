@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="./favicon_io/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+
     <title>Amazing Calculator | Toby Mould</title>
   </head>
 
@@ -21,32 +23,42 @@
       <button>BOOYAKASHA</button>
     </form> -->
     <section class="container">
-      <section id="display"></section>
+
+      <section id="display">
+        <h2>0</h2>
+      </section>
 
       <form action="">
-        <div>
-          <input id="zero" type="button" value="0" />
-          <input id="one" type="button" value="1" />
-          <input id="two" type="button" value="2" />
-          <input id="three" type="button" value="3" />
-          <input id="four" type="button" value="4" />
-          <input id="five" type="button" value="5" />
-          <input id="six" type="button" value="6" />
-          <input id="seven" type="button" value="7" />
-          <input id="eight" type="button" value="8" />
-          <input id="nine" type="button" value="9" /> -->
-        </div>
+        <section class="keypad">
+          <div class="numbers">
+            <input type="button" value="7" />
+            <input type="button" value="8" />
+            <input type="button" value="9" />
+            <input type="button" value="AC" />
 
-        <div>
-          <input type="button" value="+" />
-          <!-- <input type="button" value="-" />
-          <input type="button" value="*" />
-          <input type="button" value="/" />
-          <input type="button" value="sqrt" />
-          <input type="button" value="**" /> -->
-        </div>
 
-        <button id="equal" class="button">=</button>
+            <input type="button" value="4" />
+            <input type="button" value="5" />
+            <input type="button" value="6" />
+            <input type="button" value="*" />
+
+            <input type="button" value="1" />
+            <input type="button" value="2" />
+            <input type="button" value="3" />
+            <input type="button" value="-" />
+
+            <input type="button" value="0" />
+            <input type="button" value="." />
+            <input type='submit' value = "="  class="button submit" ></input>
+            <input type="button" value="+" />
+            
+          </div>
+
+          <!-- <div class="operators">
+            <input type="button" value="sqrt" />
+            <input type="button" value="**" />
+          </div> -->
+        </section>
       </form>
     </section>
   </body>

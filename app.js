@@ -1,21 +1,24 @@
-// const all = document.querySelectorAll('input');
-// const inputZero = document.querySelectorAll('input')[0];
-const Inputs = document.querySelector('form');
-const submit = document.querySelector('#equal');
+const inputs = document.querySelector('form');
+const submit = document.querySelector('.submit');
+const valueInDisplay = document.querySelector('#display h2');
+console.log(valueInDisplay);
 
-// console.log(allInputs);
+// instantiate your variables:
+let result = '';
+let runningTotal = 0;
 
-// console.log(inputZero.value);
-// console.log(inputZero.type);
+const resetInput = () => {
+  runningTotal = 0;
+  valueInDisplay.innerText = runningTotal;
+};
 
 // ----------STEP 1: GATHER THE INPUT---------- //
-let result = '';
-
 const inputGather = event => {
-  event.preventDefault;
+  event.preventDefault();
+  const input = event.target.value;
   console.log(`The input Array currently is ${result}`);
   console.log(`The value just clicked is ${event.target.value}`);
-  return (result += event.target.value);
+  return (result += input);
 };
 
 // ----------STEP 2: SEPARATE INTO SEPERATE NUMBERS AND OPERATOR ---------- //
@@ -24,16 +27,28 @@ let operator;
 const seperateInput = () => {
   if (result.includes('+')) {
     operator = '+';
-    // splitPosition = result.indexOf('+');
     return result.split('+');
   }
+  // } else if (result.includes('-')) {
+  //   operator = '-';
+  //   return result.split('-');
+  // } else if (result.includes('*')) {
+  //   operator = '*';
+  //   return result.split('*');
+  // } else if (result.includes('/')) {
+  //   operator = '/';
+  //   return result.split('/');
+  // }
 };
 console.log(`This is the input split apart inside an array: ${result}`);
 console.log(operator);
 
 // -------Step 3: Calculate the result by adding Array element [0] to [1]-------//
 const final = (result, operator) => {
-  return (finalValue = `${result[0]} ${operator} ${result[1]} equals ${result[0] + result[1]}`);
+  const finalValue = result[0] + result[1];
+  runningTotal += finalValue;
+  valueInDisplay.innerText = runningTotal;
+  // return (finalValue = `${result[0]} ${operator} ${result[1]} equals ${result[0] + result[1]}`);
 };
 
 //-----------STEP 5: (FUNCTION 1) CREATE ELEMENT & ADD TO HTML----------//
@@ -55,7 +70,7 @@ const calculation = event => {
 
 console.log(final);
 
-Inputs.addEventListener('click', inputGather);
+inputs.addEventListener('click', inputGather);
 submit.addEventListener('click', calculation);
 
 // const createElement = () => {
