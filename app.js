@@ -21,7 +21,9 @@ const inputGather = event => {
   event.preventDefault();
   const input = event.target.value;
   // console.log(input);
-
+  // if ((typeof input == 'number' && isFinite(input)) || operators.includes(input)) {
+  //   return;
+  // }
   if (!input) {
     return;
   } else if (input === '=') {
@@ -63,43 +65,66 @@ const turnArrayIntoMath = () => {
 
   array.forEach((element, index) => {
     if (operators.includes(element)) {
-      operatorIndex.push({ element: element, index: index });
+      operatorIndex.push({ element: element, indexPoint: index });
     }
   });
 
   console.log('operatorIndex: ', operatorIndex);
   // console.log(operatorIndex[0].element);
-  // console.log(operatorIndex[0].index);
+  console.log(operatorIndex[0].indexPoint);
 
   const lengthOfInput = array.length;
   console.log('lengthOfInput', lengthOfInput);
+  const lengthOfOperatorArray = operatorIndex.length;
+
   console.log('Array before: ', array);
 
   operatorIndex.map((object, index) => {
-    console.log(`Round ${index}`, 'initialIndex:', initialIndex, 'object.index:', object.index);
-
-    if (index === 0) {
-      let result = array.slice(0, object.index);
+    console.log(`Round ${index}`, 'initialIndex:', initialIndex, 'object.index:', object.indexPoint);
+    console.log('INDEX', index, 'operatorIndex.length', operatorIndex.length);
+    if (index === operatorIndex.length - 1) {
+      let result = array.slice(initialIndex, object.indexPoint);
       console.log('result', result);
-      numberArray.push(result);
-      initialIndex = object.index + 1;
-
-      const secondnumber = operatorIndex[1].index;
-
-      console.log(`Round ${index} - part 2: `, 'initialIndex:', initialIndex, 'operatorIndex[1].index:', secondnumber);
-      console.log('secondnumber', secondnumber);
-      result = array.slice(initialIndex, secondnumber);
+      let resultAsString = parseFloat(result.join(''));
+      numberArray.push(resultAsString);
+      initialIndex = object.indexPoint + 1;
+      //
+      result = array.slice(initialIndex, array.length);
       console.log('result', result);
-      numberArray.push(result);
-    } else if (index === 1) {
-      return;
+      resultAsString = parseFloat(result.join(''));
+      numberArray.push(resultAsString);
+      initialIndex = object.indexPoint + 1;
     } else {
-      let result = array.slice(initialIndex, object.index);
+      let result = array.slice(initialIndex, object.indexPoint);
       console.log('result', result);
-      numberArray.push(result);
-      initialIndex = object.index;
-      console.log(initialIndex + 1);
+      let resultAsString = parseFloat(result.join(''));
+      numberArray.push(resultAsString);
+      initialIndex = object.indexPoint + 1;
     }
+
+    // if (index === 0) {
+    //   let result = array.slice(0, object.indexPoint);
+    //   console.log('result', result);
+    //   numberArray.push(result);
+    //   initialIndex = object.indexPoint + 1;
+
+    //   const secondnumber = operatorIndex[1].indexPoint;
+
+    // console.log(`Round ${index} - part 2: `, 'initialIndex:', initialIndex, 'operatorIndex[1].index:', secondnumber);
+    // console.log('secondnumber', secondnumber);
+    // result = array.slice(initialIndex, secondnumber);
+    // console.log('result', result);
+    // numberArray.push(result);
+    // } else if (index === 1) {
+    //   return;
+    // }
+    // else {
+    // let result = array.slice(initialIndex, object.indexPoint);
+    // console.log('result', result);
+    // numberArray.push(result);
+    // initialIndex = object.indexPoint;
+    // console.log(initialIndex + 1);
+    // }
   });
 
   console.log('numbers array', numberArray);
